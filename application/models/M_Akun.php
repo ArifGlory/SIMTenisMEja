@@ -117,8 +117,8 @@ class M_Akun extends CI_Model
     }
 
     function getSingleUser($iduser){
-        $this->db->where('id_pelanggan',$iduser);
-        $data = $this->db->get("tb_pelanggan");
+        $this->db->where('iduser',$iduser);
+        $data = $this->db->get("user");
         return $data;
     }
 

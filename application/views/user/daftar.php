@@ -7,7 +7,7 @@
                 <div class="card-header">
 					<div class="row">
 						<div class="col-md-6">
-							<h5>Pendaftaran Pelanggan</h5>
+							<h5>Pendaftaran Atlet</h5>
 							<span>Silahkan isi form berikut</span>
 						</div>
 						<div class="col-md-6">

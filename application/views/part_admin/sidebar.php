@@ -25,6 +25,22 @@ $level = $session['level'];
                                             <span class="pcoded-mtext">Dashboard</span>
                                     </a>
                                 </li>
+								<li class="">
+									<a href="<?php echo base_url(); ?>Dashboard/evaluasi" class="waves-effect waves-dark">
+											<span class="pcoded-micon">
+												<i class="feather icon-bookmark"></i>
+											</span>
+										<span class="pcoded-mtext">Data Evaluasi</span>
+									</a>
+								</li>
+								<li class="">
+									<a href="<?php echo base_url(); ?>Dashboard/profil" class="waves-effect waves-dark">
+											<span class="pcoded-micon">
+												<i class="feather icon-user"></i>
+											</span>
+										<span class="pcoded-mtext">Profil</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</nav>

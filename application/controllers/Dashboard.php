@@ -37,5 +37,14 @@ class Dashboard extends CI_Controller
         $this->load->view('part_admin/footer');
     }
 
+    function profil(){
+		$data['profil'] = $this->M_Akun->getSingleUser($this->userSession['id'])->result_array()[0];
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar');
+		$this->load->view('admin/profil',$data);
+		$this->load->view('part_admin/footer');
+	}
+
 
 }

@@ -14,7 +14,7 @@
 													</a>
 											</li>
 											<li class="breadcrumb-item">
-												<a href="#"> Panel Admin </a>
+												<a href="#"> Home </a>
 											</li>
 										</ul>
 									</div>
@@ -27,44 +27,12 @@
 								<div class="page-wrapper">
 									<div class="page-body">
 										<!-- [ page content ] start -->
-										<div class="row">
-											<div class="col-md-12 col-xl-4">
-												<div class="card">
-                                                    <div class="card-block text-center">
-                                                        <i class="feather icon-user text-c-blue d-block f-40"></i>
-                                                        <h4 class="m-t-20"><span class="text-c-blue"><?php echo  0; ?></span> Orang</h4>
-                                                        <p class="m-b-20">Data Pelanggan</p>
-                                                        <a href="<?php echo base_url();?>Admin/pelanggan" class="btn btn-primary btn-sm btn-round">Kelola</a>
-                                                    </div>
-                                                </div>
-											</div>
-											<div class="col-md-12 col-xl-4">
-												<div class="card">
-                                                    <div class="card-block text-center">
-                                                        <i class="feather icon-file-text text-c-green d-block f-40"></i>
-                                                        <h4 class="m-t-20"><span class="text-c-green"><?php echo  0; ?></span> Produk</h4>
-                                                        <p class="m-b-20">Data Produk</p>
-                                                        <a href="<?php echo base_url();?>Produk" class="btn btn-success btn-sm btn-round">Kelola</a>
-                                                    </div>
-                                                </div>
-											</div>
-											<div class="col-md-12 col-xl-4">
-												<div class="card">
-                                                    <div class="card-block text-center">
-                                                        <i class="feather icon-briefcase text-c-red d-block f-40"></i>
-                                                        <h4 class="m-t-20"><span class="text-c-red"><?php echo  0; ?></span> Pesanan masuk</h4>
-                                                        <p class="m-b-20">Data Pesanan</p>
-                                                        <a class="btn btn-danger btn-sm btn-round" href="<?php echo base_url();?>Pesanan">Kelola</a>
-                                                    </div>
-                                                </div>
-											</div>
-										</div>
 
                                         <div class="row">
                                             <div class="col-sm-12">
                                                 <div class="card table-card">
                                                     <div class="card-header">
-                                                        <h5>Data Pelanggan terbaru</h5>
+                                                        <h5>Data Evaluasi terbaru</h5>
                                                         <div class="card-header-right">
                                                             <ul class="list-unstyled card-option" style="width: 30px;">
                                                                 <li class="first-opt" style=""><i
@@ -79,9 +47,9 @@
                                                             <table class="table table-hover">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th>Nama</th>
-                                                                    <th>Phone</th>
-                                                                    <th class="text-right">Alamat</th>
+                                                                    <th>Tanggal Evaluasi</th>
+                                                                    <th>Total Nilai</th>
+                                                                    <th class="text-right">Pesan Evaluasi</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -105,8 +73,8 @@
                                                                 </tbody>
                                                             </table>
                                                             <div class="text-right m-r-20">
-                                                                <a href="<?php echo base_url(); ?>Admin/pelanggan" class=" b-b-primary text-primary">Lihat
-                                                                    Semua Data Pelanggan</a>
+                                                                <a href="<?php echo base_url(); ?>Dashboard/evaluasi" class=" b-b-primary text-primary">Lihat
+                                                                    Semua Data Evaluasi</a>
                                                             </div>
                                                         </div>
                                                     </div>
