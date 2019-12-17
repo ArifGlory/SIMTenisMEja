@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller
 
         $this->load->view('part_admin/header');
         $this->load->view('part_admin/sidebar');
-        $this->load->view('admin/dashboard',$data);
+        $this->load->view('atlet/dashboard',$data);
         $this->load->view('part_admin/footer');
     }
 
@@ -42,7 +42,7 @@ class Dashboard extends CI_Controller
 
 		$this->load->view('part_admin/header');
 		$this->load->view('part_admin/sidebar');
-		$this->load->view('admin/profil',$data);
+		$this->load->view('atlet/profil',$data);
 		$this->load->view('part_admin/footer');
 	}
 

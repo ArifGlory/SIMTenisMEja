@@ -109,7 +109,7 @@
 				<div class="col-sm-12">
 					<!-- Authentication card start -->
 
-					<form id="form_login" method="post" action="<?php echo base_url();?>Auth/signInUser" enctype="multipart"
+					<form id="form_login" method="post" action="<?php echo base_url();?>Auth/signInAdmin" enctype="multipart"
 						class="md-float-material form-material">
 						<div class="text-center">
 							<img width="100" height="100" src="<?php echo base_url();  ?>asset/assets/images/applogo.png" alt="logo.png">
@@ -118,7 +118,7 @@
 							<div class="card-block">
 								<div class="row m-b-20">
 									<div align="center" class="col-md-12">
-										<h2 class="text-center">SIM Tenis Meja</h2>
+										<h2 class="text-center">Pelatih SIM TTC</h2>
 										<h5>Silakan Login untuk melanjutkan</h5>
 									</div>
 								</div>
@@ -141,9 +141,9 @@
 									</div>
 								</div>
 								<hr />
-								<div align="center" class="form-group">
-									<label>Belum Memiliki Akun ? </label> <a href="<?php echo base_url()?>Auth/daftarUser" class="btn btn-success btn-sm">Daftar Disini</a>
-								</div>
+								<!--<div align="center" class="form-group">
+									<label>Belum Memiliki Akun ? </label> <a href="<?php /*echo base_url()*/?>Auth/daftarUser" class="btn btn-success btn-sm">Daftar Disini</a>
+								</div>-->
 							</div>
 						</div>
 					</form>

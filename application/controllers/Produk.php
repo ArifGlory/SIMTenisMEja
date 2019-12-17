@@ -35,7 +35,7 @@ class Produk extends CI_Controller
 
         $this->load->view('part_admin/header');
         $this->load->view('part_admin/sidebar');
-        $this->load->view('admin/data_produk',$data);
+        $this->load->view('atlet/data_produk',$data);
         $this->load->view('part_admin/footer');
     }
 
@@ -65,7 +65,7 @@ class Produk extends CI_Controller
 
         $this->load->view('part_admin/header');
         $this->load->view('part_admin/sidebar');
-        $this->load->view('admin/gambar_produk',$data);
+        $this->load->view('atlet/gambar_produk',$data);
         $this->load->view('part_admin/footer');
     }
 

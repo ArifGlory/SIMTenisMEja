@@ -24,7 +24,7 @@ function gtag_report_conversion() {
 
 $('body').append('' +
     '<div class="fixed-button active">' +
-        '<a onclick="return gtag_report_conversion()" href="https://1.envato.market/c/1289604/275988/4415?subId1=phoenixcoded&u=https%3A%2F%2Fthemeforest.net%2Fitem%2Fable-pro-responsive-bootstrap-4-admin-template%2F19300403" target="_blank" class="btn" title="Buy Ablepro Theme Now On themeforest.net">' +
+        '<a onclick="return gtag_report_conversion()" href="https://1.envato.market/c/1289604/275988/4415?subId1=phoenixcoded&u=https%3A%2F%2Fthemeforest.net%2Fitem%2Fable-pro-responsive-bootstrap-4-atlet-template%2F19300403" target="_blank" class="btn" title="Buy Ablepro Theme Now On themeforest.net">' +
             '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512.16 512.16" style="enable-background:new 0 0 512.16 512.16;" xml:space="preserve" width="15px" height="15px" class=""><g><path d="M428.669,22.858l-3.029-6.101C419.692,5.442,407.467-1.126,394.749,0.16  c-75.456,0-249.344,116.608-265.451,302.763c-17.138-41.848-24.984-86.918-22.997-132.096c0.004-8.828-5.615-16.678-13.973-19.52  c-8.423-2.955-17.794-0.259-23.36,6.72c-31.163,40.288-47.907,89.867-47.552,140.8c0,102.741,73.429,213.333,234.667,213.333  c173.205,0,234.667-137.899,234.667-256C489.945,174.417,468.597,94.19,428.669,22.858z" data-original="#4CAF50" class="active-path" data-old_color="#ffffff" fill="#ffffff"/></g> </svg> Buy Now!' +
         '</a> ' +
     '</div>' +

@@ -45,9 +45,29 @@ class M_Akun extends CI_Model
 			}
 		}
 
-
-
     }
+
+    function deleteUser($idUser){
+		$redirect       =  base_url()."Admin/atlet";
+
+    	$this->db->where('iduser',$idUser);
+    	$query = $this->db->delete('user');
+
+		if($query){
+			$response['status']     = "success";
+			$response['message']    = "Hapus data berhasil";
+			$response['redirect']   = $redirect;
+
+			$response = json_encode($response);
+			echo $response;
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Gagal menghapus, coba lagi nanti";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+	}
 
     function cekSignInUser($data){
         $username = $data ['username'];
@@ -92,6 +112,49 @@ class M_Akun extends CI_Model
         }
     }
 
+	function cekSignInAdmin($data){
+		$username = $data ['username'];
+		$password = $data ['password'];
+
+		$q = $this->db->query("SELECT * FROM `admin` WHERE `username` = '$username' ");
+
+		if(count($q->result()) > 0){
+
+			$user = $q->result_array()[0];
+			$decoded_pass = $this->encrypt->decode($user['password']);
+
+			if ($decoded_pass == $password){
+				$user = array(
+					'nama'      => $user['nama'],
+					'id'        => $user['idadmin'],
+					'level'     => $user['level']
+				);
+
+				$this->session->set_userdata($user);
+				$response['status']     = "success";
+				$response['message']    = "Login berhasil";
+				$response['redirect']   = base_url()."Admin";
+
+				$response = json_encode($response);
+				echo $response;
+			}else{
+				$response['status']     = "error";
+				$response['message']    = "Login gagal, periksa kembali password anda";
+
+				$response = json_encode($response);
+				echo $response;
+			}
+
+
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Login gagal, periksa kembali email / password anda";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+	}
+
     function updatePassword($id_pelanggan,$password){
         $data_update = array(
           'password'=>$password
@@ -121,6 +184,11 @@ class M_Akun extends CI_Model
         $data = $this->db->get("user");
         return $data;
     }
+
+    function getAllAtlet(){
+		$data = $this->db->get("user");
+		return $data;
+	}
 
     function updateFoto($idPelangan,$foto){
         $target_dir = "foto/pelanggan/";

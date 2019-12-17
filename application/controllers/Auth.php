@@ -18,8 +18,12 @@ class Auth extends CI_Controller
     }
 
     function index(){
-        $this->load->view('admin/login_admin');
+        $this->load->view('atlet/login_admin');
     }
+
+    function loginPelatih(){
+		$this->load->view('pelatih/login');
+	}
 
     function daftarUser(){
 		$this->load->view('parts/header');
@@ -32,10 +36,17 @@ class Auth extends CI_Controller
        	$this->M_Akun->cekSignInUser($data);
     }
 
+	function signInAdmin(){
+		$data = $_POST;
+		$this->M_Akun->cekSignInAdmin($data);
+	}
+
     function createUser(){
 		$data = $_POST;
 		$this->M_Akun->saveUser($data);
 	}
+
+
 
     function logout(){
         session_destroy();

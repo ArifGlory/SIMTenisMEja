@@ -71,7 +71,7 @@ CREATE TABLE `tb_admin` (
 --
 
 INSERT INTO `tb_admin` (`id_admin`, `username`, `password`, `nama`, `level`) VALUES
-(1, 'admin', 'qwertyasd', 'Dashboard ', 'super');
+(1, 'atlet', 'qwertyasd', 'Dashboard ', 'super');
 
 -- --------------------------------------------------------
 

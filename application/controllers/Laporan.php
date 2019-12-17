@@ -26,7 +26,7 @@ class Laporan extends CI_Controller
         $level      = $this->userSession['level'];
         if($hakAkses != "") {
 
-            if ($level == "admin" || $level == "pimpinan" ){
+            if ($level == "atlet" || $level == "pimpinan" ){
 
             }else{
                 redirect("Utama");
@@ -45,7 +45,7 @@ class Laporan extends CI_Controller
 
         $this->load->view('part_admin/header');
         $this->load->view('part_admin/sidebar');
-        $this->load->view('admin/laporan',$data);
+        $this->load->view('atlet/laporan',$data);
         $this->load->view('part_admin/footer');
     }
 
