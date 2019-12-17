@@ -30,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();  ?>asset/assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();  ?>asset/assets/css/pages.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();  ?>asset/bower_components/sweetalert/css/sweetalert.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();  ?>asset/bower_components/select2/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();  ?>asset/assets/icon/icofont/css/icofont.css">
 	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();  ?>asset/assets/css/component.css"> -->
 
@@ -39,6 +40,8 @@
 	<script type="text/javascript" src="<?php echo base_url();  ?>asset/bower_components/jquery/js/jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();  ?>asset/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url();  ?>asset/bower_components/sweetalert/js/sweetalert.min.js">
+	</script>
+	<script type="text/javascript" src="<?php echo base_url();  ?>asset/bower_components/select2/js/select2.full.min.js">
 	</script>
 
 	 <!-- Data Table Css -->

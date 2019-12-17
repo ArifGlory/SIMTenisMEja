@@ -43,22 +43,54 @@
                                                         <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6"></div>
                                                         <div class="col-xs-12 col-sm-12 col-md-6"></div>
                                                     </div>
+													<form id="form_tambah" action="<?php echo base_url(); ?>Admin/simpanEvaluasi"
+														  method="post" enctype="multipart/form-data">
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12">
-															<div class="form-group">
+															<div class="form-group col-md-12">
 																<label>Nama Atlet</label>
-																<select id="selectAtlet" class="form-control" name="nama">
+																<select style="width: 100%;" id="selectAtlet" class="form-control" name="idatlet">
 																	<?php foreach ($atlet as $val)  {?>
 																		<option value="<?php echo $val->iduser ?>"><?php echo $val->nama ?></option>
 																	<?php } ?>
 																</select>
 															</div>
+															<br>
 															<div class="form-group">
+																<br>
 																<label>Backhand</label>
-																<input type="number" class="form-control" name="backhand" required>
+																<input type="text" class="form-control numeric" name="backhand" required>
+															</div>
+															<div class="form-group">
+																<label>Forehand</label>
+																<input type="text" class="form-control numeric" name="forehand" required>
+															</div>
+															<div class="form-group">
+																<label>Chop</label>
+																<input type="number" class="form-control numeric" name="chop" required>
+															</div>
+															<div class="form-group">
+																<label>Blok</label>
+																<input type="number" class="form-control numeric" name="blok" required>
+															</div>
+															<div class="form-group">
+																<label>Spin</label>
+																<input type="number" class="form-control numeric" name="spin" required>
+															</div>
+															<div class="form-group">
+																<label>Gerakan Kaki</label>
+																<input type="number" class="form-control numeric" name="gerakankaki" required>
+															</div>
+															<div class="form-group">
+																<label>Fisik</label>
+																<input type="number" class="form-control numeric" name="fisik" required>
+															</div>
+															<div class="form-group">
+																<button type="submit" class="btn btn-md btn-primary">Simpan Evaluasi</button>
 															</div>
                                                         </div>
                                                     </div>
+													</form>
                                                 </div>
                                             </div>
                                         </div>
@@ -85,8 +117,49 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
+		$('#selectAtlet').select2();
 
+        $(".numeric").keyup(function () {
+            this.value = this.value.replace(/[^0-9\.]/g,'');
+        });
 
+        $("#form_tambah").submit(function (e) {
+            e.preventDefault();
+            var form = $(this);
+            var btnHtml = form.find("[type='submit']").html();
+            var url = form.attr("action");
+            var data = new FormData(this);
 
+            console.log("diklik");
+            $.ajax({
+
+                beforeSend: function () {
+                    form.find("[type='submit']").addClass("disabled").html("Loading ... ");
+                },
+                cache: false,
+                processData: false,
+                contentType: false,
+                type: "POST",
+                url: url,
+                data: data,
+                dataType: 'JSON',
+                success: function (response) {
+                    form.find("[type='submit']").removeClass("disabled").html(btnHtml);
+                    if (response.status == "success") {
+                        swal("Berhasil", response.message, "success");
+                        console.log(response);
+                        setTimeout(function () {
+                            swal.close();
+                            window.location.replace(response.redirect);
+                        }, 1000);
+
+                    } else {
+                        swal("Gagal", response.message, "error");
+                    }
+                }
+
+            });
+
+        });
 	});
 </script>

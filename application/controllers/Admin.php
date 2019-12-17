@@ -68,6 +68,26 @@ class Admin extends CI_Controller
 		$this->load->view('part_admin/footer');
 	}
 
+	function simpanEvaluasi(){
+    	$data = $this->input->post();
+
+    	$total = $data['backhand'] + $data['forehand'] + $data['chop'] + $data['blok'] + $data['spin'] + $data['gerakankaki'] + $data['fisik'];
+
+    	if ($total < 70){
+    		$kategori_nilai = "Kurang";
+		}else if ($total >= 70 && $total <80 ){
+			$kategori_nilai = "Cukup";
+		}else if ($total >= 80 && $total <90 ){
+			$kategori_nilai = "Baik";
+		}else if ($total >= 90){
+			$kategori_nilai = "Sangat Baik";
+		}
+    	$data['total_nilai'] = $total;
+    	$data['kategori_nilai'] = $kategori_nilai;
+
+    	$this->M_Evaluasi->simpanEvaluasi($data);
+	}
+
 	function hapusAtlet(){
     	$iduser = $this->input->post('iduser');
 
