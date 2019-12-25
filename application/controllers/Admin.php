@@ -73,6 +73,10 @@ class Admin extends CI_Controller
 
     	$total = $data['backhand'] + $data['forehand'] + $data['chop'] + $data['blok'] + $data['spin'] + $data['gerakankaki'] + $data['fisik'];
 
+    	if ($total > 100){
+    		$total = 100;
+		}
+
     	if ($total < 70){
     		$kategori_nilai = "Kurang";
 		}else if ($total >= 70 && $total <80 ){

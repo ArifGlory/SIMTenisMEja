@@ -55,6 +55,17 @@ class Jadwal extends CI_Controller
 		$this->load->view('part_admin/footer');
 	}
 
+	function simpanJadwal(){
+
+		$data = $this->input->post();
+		$this->M_Jadwal->simpanJadwal($data);
+	}
+
+	function hapusJadwal(){
+    	$idJadwal = $this->input->post('idjadwal');
+		$this->M_Jadwal->deleteJadwal($idJadwal);
+	}
+
 
 
 }

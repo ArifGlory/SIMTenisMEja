@@ -41,6 +41,14 @@ $level = $session['level'];
 										<span class="pcoded-mtext">Profil</span>
 									</a>
 								</li>
+								<li class="">
+									<a href="<?php echo base_url(); ?>Jadwal" class="waves-effect waves-dark">
+											<span class="pcoded-micon">
+												<i class="feather icon-bar-chart"></i>
+											</span>
+										<span class="pcoded-mtext">Data Jadwal</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</nav>

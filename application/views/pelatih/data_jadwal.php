@@ -51,7 +51,11 @@
 														<tr role="row">
 															<th>Hari</th>
 															<th>Waktu</th>
+															<?php
+															if ($level != "atlet"){ ?>
 															<th>Aksi</th>
+															<?php }
+															?>
 														</tr>
 													</thead>
 													<tbody>
@@ -64,13 +68,19 @@
 															<td>
 																<?php echo "Pukul ". $val->waktu; ?>
 															</td>
-															<td>
-                                                                <button data-id_evaluasi="<?php echo $val->idjadwal; ?>"
-                                                                        class="btn btn-round btn-sm btn-danger"
-                                                                        id="hapusEvaluasi"
-                                                                        title="Hapus Evaluasi"
-                                                                        data-toggle="modal" data-target="#modalDelete"><i class="icofont icofont-ui-delete"></i></button>
-															</td>
+															<?php
+															if ($level != "atlet"){ ?>
+																<td>
+
+																	<button data-id_jadwal="<?php echo $val->idjadwal; ?>"
+																			class="btn btn-round btn-sm btn-danger"
+																			id="hapusJadwal"
+																			title="Hapus Jadwal"
+																			data-toggle="modal" data-target="#modalDelete"><i class="icofont icofont-ui-delete"></i></button>
+
+																</td>
+															<?php }
+															?>
 														</tr>
 														<?php }?>
 													</tbody>
@@ -136,7 +146,7 @@
         var kode_produk;
 
 
-        $("#table_user	").on("click", "#hapusAtlet", function(event) {
+        $("#table_user	").on("click", "#hapusJadwal", function(event) {
             $(".idjadwal").val($(this).attr('data-id_jadwal'));
         });
 
