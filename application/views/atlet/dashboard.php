@@ -28,59 +28,48 @@
 									<div class="page-body">
 										<!-- [ page content ] start -->
 
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <div class="card table-card">
-                                                    <div class="card-header">
-                                                        <h5>Data Evaluasi terbaru</h5>
-                                                        <div class="card-header-right">
-                                                            <ul class="list-unstyled card-option" style="width: 30px;">
-                                                                <li class="first-opt" style=""><i
-                                                                            class="feather open-card-option icon-chevron-left"></i></li>
-                                                                <li><i class="feather icon-minus minimize-card"></i></li>
-                                                                <!-- <li><i class="feather icon-refresh-cw reload-card"></i></li> -->
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-block">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-hover">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th>Tanggal Evaluasi</th>
-                                                                    <th>Total Nilai</th>
-                                                                    <th class="text-right">Pesan Evaluasi</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                <?php foreach($evaluasi as $val){
-                                                                     ?>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <div class="d-inline-block align-middle">
-                                                                                <img src="<?php echo base_url(); ?>asset/assets/images/<?php echo $foto; ?>"
-                                                                                     alt="user image"
-                                                                                     class="img-radius img-40 align-top m-r-15">
-                                                                                <div class="d-inline-block">
-                                                                                    <h6><?php echo $val->nama_pelanggan; ?></h6>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                        <td><?php echo $val->phone; ?></td>
-                                                                        <td class="text-right"><?php echo $val->alamat; ?></td>
-                                                                    </tr>
-                                                                <?php } ?>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="text-right m-r-20">
-                                                                <a href="<?php echo base_url(); ?>Dashboard/evaluasi" class=" b-b-primary text-primary">Lihat
-                                                                    Semua Data Evaluasi</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="card">
+													<div class="card-header">
+														<h5>Data Evaluasi Terbaru</h5>
+													</div>
+													<div class="card-block">
+														<div class="table-responsive">
+															<div class="row">
+																<div class="col-xs-12 col-sm-12">
+																	<table id="table_user" class="table table-hover">
+																		<thead>
+																		<tr role="row">
+																			<th>Tanggal Evaluasi</th>
+																			<th>Total Nilai</th>
+																			<th>Kategori Nilai</th>
+																		</tr>
+																		</thead>
+																		<tbody>
+																		<?php foreach($evaluasi as $val){
+																			?>
+																			<tr>
+																				<td>
+																					<?php echo date( 'F j, Y', strtotime($val->tanggal)); ?>
+																				</td>
+																				<td>
+																					<?php echo $val->total_nilai; ?>
+																				</td>
+																				<td>
+																					<?php echo $val->kategori_nilai; ?>
+																				</td>
+																			</tr>
+																		<?php }?>
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 										<!-- [ page content ] end -->
 									</div>
 								</div>

@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller
 
     function index(){
 
-    	$data['evaluasi'] = array();
+		$data['evaluasi'] = $this->M_Evaluasi->getMyEvaluasi($this->userSession['id'],5)->result();
 
         $this->load->view('part_admin/header');
         $this->load->view('part_admin/sidebar');
@@ -44,6 +44,16 @@ class Dashboard extends CI_Controller
 		$this->load->view('part_admin/header');
 		$this->load->view('part_admin/sidebar');
 		$this->load->view('atlet/profil',$data);
+		$this->load->view('part_admin/footer');
+	}
+
+	function evaluasi(){
+
+		$data['evaluasi'] = $this->M_Evaluasi->getMyEvaluasi($this->userSession['id'],0)->result();
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar');
+		$this->load->view('atlet/my_evaluasi',$data);
 		$this->load->view('part_admin/footer');
 	}
 

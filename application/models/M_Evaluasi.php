@@ -12,6 +12,17 @@ class M_Evaluasi extends CI_Model
 		return $data;
 	}
 
+	function getMyEvaluasi($idAtlet,$limit){
+		$this->db->select('*');
+		$this->db->from('evaluasi');
+		$this->db->join('user', 'evaluasi.idatlet = user.iduser');
+		$this->db->where('idatlet',$idAtlet);
+		$this->db->order_by('tanggal',"ASC");
+		$this->db->limit($limit);
+		$data = $this->db->get();
+		return $data;
+	}
+
 	function getSingleEvaluasi($idEvaluasi){
 		$this->db->select('*');
 		$this->db->from('evaluasi');
