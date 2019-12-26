@@ -68,10 +68,8 @@
 																<?php echo $val->kategori_nilai; ?>
 															</td>
 															<td>
-																<a href="<?php echo base_url()?>Admin/detailEvaluasi/<?php echo $val->idevaluasi; ?>" class="btn btn-round btn-sm btn-primary"
-																		id="detailAtlet"
-																		title="Detail Atlet"
-																		data-toggle="modal" data-target="#modalDetail"><i class="icofont icofont-pencil"></i></a>
+																<a href="<?php echo base_url()?>Admin/editEvaluasi/<?php echo $val->idevaluasi; ?>" class="btn btn-round btn-sm btn-primary"
+																		title="Edit Evaluasi"><i class="icofont icofont-pencil"></i></a>
 
                                                                 <button data-id_evaluasi="<?php echo $val->idevaluasi; ?>"
                                                                         class="btn btn-round btn-sm btn-danger"
@@ -144,7 +142,7 @@
         var kode_produk;
 
 
-        $("#table_user	").on("click", "#hapusAtlet", function(event) {
+        $("#table_user").on("click", "#hapusEvaluasi", function(event) {
             $(".idevaluasi").val($(this).attr('data-id_evaluasi'));
         });
 

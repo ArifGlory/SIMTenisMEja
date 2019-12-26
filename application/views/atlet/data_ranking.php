@@ -1,3 +1,4 @@
+<?php $level =  $this->session->userdata()['level'] ?>
 <div class="pcoded-content">
 	<!-- [ breadcrumb ] start -->
 	<div class="page-header">
@@ -5,16 +6,16 @@
 			<div class="row align-items-center">
 				<div class="col-md-8">
 					<div class="page-header-title">
-						<h4 class="m-b-10">Dashboard Pelatih SIM TTC</h4>
+						<h4 class="m-b-10">Ranking</h4>
 					</div>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item">
-							<a href="#">
+							<a href="<?php  echo base_url()?>Admin">
 								<i class="feather icon-home"></i>
 							</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a href="<?php echo base_url(); ?>Admin">Dashboard Pelatih</a>
+							<a href="#">Data Ranking</a>
 						</li>
 					</ul>
 				</div>
@@ -27,29 +28,6 @@
 			<div class="page-wrapper">
 				<div class="page-body">
 					<!-- [ page content ] start -->
-					<div class="row">
-						<div class="col-md-12 col-xl-4">
-							<div class="card">
-								<div class="card-block text-center">
-									<i class="feather icon-user text-c-blue d-block f-40"></i>
-									<h4 class="m-t-20"><span class="text-c-blue"><?php echo $jml_atlet; ?></span> Atlet</h4>
-									<p class="m-b-20">Data Alumni</p>
-									<a href="<?php echo base_url(); ?>Admin/atlet" class="btn btn-primary btn-sm btn-round">Kelola</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-12 col-xl-4">
-							<div class="card">
-								<div class="card-block text-center">
-									<i class="feather icon-file-text text-c-green d-block f-40"></i>
-									<h4 class="m-t-20"><span class="text-c-green"><?php echo $jml_evaluasi; ?></span> Evaluasi</h4>
-									<p class="m-b-20">Data Evaluasi</p>
-									<a href="<?php echo base_url(); ?>Admin/evaluasi" class="btn btn-success btn-sm btn-round">Kelola</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card">
@@ -97,22 +75,25 @@
 						</div>
 					</div>
 					<!-- [ page content ] end -->
+
+
+
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- [ style Customizer ] start -->
-<!-- <div id="styleSelector">
-					</div> -->
-<!-- [ style Customizer ] end -->
-</div>
-</div>
-</div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var myTable = $("#table_user").DataTable();
 
-    });
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		var myTable = $("#table_user").DataTable();
+
+	});
 </script>

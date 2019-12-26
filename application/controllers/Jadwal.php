@@ -55,6 +55,23 @@ class Jadwal extends CI_Controller
 		$this->load->view('part_admin/footer');
 	}
 
+	function editJadwal(){
+		$this->load->view('part_admin/header');
+		if ($this->userSession['level'] == "atlet"){
+			$this->load->view('part_admin/sidebar');
+		}else{
+			$this->load->view('part_admin/sidebar_pelatih');
+		}
+
+		$this->load->view('pelatih/edit_jadwal');
+		$this->load->view('part_admin/footer');
+	}
+
+	function updateJadwal(){
+		$data = $this->input->post();
+		$this->M_Jadwal->ubahJadwal($data);
+	}
+
 	function simpanJadwal(){
 
 		$data = $this->input->post();

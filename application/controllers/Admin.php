@@ -32,6 +32,18 @@ class Admin extends CI_Controller
 
     	$data['jml_atlet'] = $this->M_Akun->getAllAtlet()->num_rows();
     	$data['jml_evaluasi'] = $this->M_Evaluasi->getAllEvaluasi()->num_rows();
+		$data['rank'] = $this->M_Evaluasi->getRankByEvaluasi()->result();
+
+
+		foreach ($data['rank'] as $val){
+			if ($val->totalnya == null){
+				$val->totalnya = 0;
+			}
+
+			if ($val->idatlet == null){
+				$val->idatlet = 0;
+			}
+		}
 
         $this->load->view('part_admin/header');
         $this->load->view('part_admin/sidebar_pelatih');
@@ -59,6 +71,26 @@ class Admin extends CI_Controller
 		$this->load->view('part_admin/footer');
 	}
 
+	function ranking(){
+		$data['rank'] = $this->M_Evaluasi->getRankByEvaluasi()->result();
+
+
+		foreach ($data['rank'] as $val){
+			if ($val->totalnya == null){
+				$val->totalnya = 0;
+			}
+
+			if ($val->idatlet == null){
+				$val->idatlet = 0;
+			}
+		}
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar_pelatih');
+		$this->load->view('atlet/data_ranking',$data);
+		$this->load->view('part_admin/footer');
+	}
+
 	function addEvaluasi(){
 		$data['atlet'] = $this->M_Akun->getAllAtlet()->result();
 
@@ -68,14 +100,24 @@ class Admin extends CI_Controller
 		$this->load->view('part_admin/footer');
 	}
 
+	function editEvaluasi($idEvaluasi){
+		$data['evaluasi'] = $this->M_Evaluasi->getSingleEvaluasi($idEvaluasi)->result_array()[0];
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar_pelatih');
+		$this->load->view('pelatih/edit_evaluasi',$data);
+		$this->load->view('part_admin/footer');
+	}
+
 	function simpanEvaluasi(){
     	$data = $this->input->post();
 
     	$total = $data['backhand'] + $data['forehand'] + $data['chop'] + $data['blok'] + $data['spin'] + $data['gerakankaki'] + $data['fisik'];
 
-    	if ($total > 100){
-    		$total = 100;
+    	if ($total > 700){
+    		$total = 700;
 		}
+    	$total = $total / 7;
 
     	if ($total < 70){
     		$kategori_nilai = "Kurang";
@@ -92,10 +134,35 @@ class Admin extends CI_Controller
     	$this->M_Evaluasi->simpanEvaluasi($data);
 	}
 
-	function hapusAtlet(){
-    	$iduser = $this->input->post('iduser');
+	function updateEvaluasi(){
+		$data = $this->input->post();
 
-    	$this->M_Akun->deleteUser($iduser);
+		$total = $data['backhand'] + $data['forehand'] + $data['chop'] + $data['blok'] + $data['spin'] + $data['gerakankaki'] + $data['fisik'];
+
+		if ($total > 700){
+			$total = 700;
+		}
+		$total = $total / 7;
+
+		if ($total < 70){
+			$kategori_nilai = "Kurang";
+		}else if ($total >= 70 && $total <80 ){
+			$kategori_nilai = "Cukup";
+		}else if ($total >= 80 && $total <90 ){
+			$kategori_nilai = "Baik";
+		}else if ($total >= 90){
+			$kategori_nilai = "Sangat Baik";
+		}
+		$data['total_nilai'] = $total;
+		$data['kategori_nilai'] = $kategori_nilai;
+
+		$this->M_Evaluasi->ubahEvaluasi($data);
+	}
+
+	function hapusEvaluasi(){
+    	$idevaluasi = $this->input->post('idevaluasi');
+
+    	$this->M_Evaluasi->deleteEvaluasi($idevaluasi);
 	}
 
 

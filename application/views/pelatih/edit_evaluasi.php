@@ -5,7 +5,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-8">
 					<div class="page-header-title">
-						<h4 class="m-b-10">Tambah Evaluasi</h4>
+						<h4 class="m-b-10">Edit Evaluasi</h4>
 					</div>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -14,7 +14,7 @@
 							</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a href="#">Evaluasi Atlet</a>
+							<a href="#">Edit Evaluasi Atlet</a>
 						</li>
 					</ul>
 				</div>
@@ -43,50 +43,46 @@
                                                         <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6"></div>
                                                         <div class="col-xs-12 col-sm-12 col-md-6"></div>
                                                     </div>
-													<form id="form_tambah" action="<?php echo base_url(); ?>Admin/simpanEvaluasi"
+													<form id="form_update" action="<?php echo base_url(); ?>Admin/updateEvaluasi"
 														  method="post" enctype="multipart/form-data">
                                                     <div class="row">
                                                         <div class="col-xs-12 col-sm-12">
 															<div class="form-group col-md-12">
 																<label>Nama Atlet</label>
-																<select style="width: 100%;" id="selectAtlet" class="form-control" name="idatlet">
-																	<?php foreach ($atlet as $val)  {?>
-																		<option value="<?php echo $val->iduser ?>"><?php echo $val->nama ?></option>
-																	<?php } ?>
-																</select>
+																<h3><?php echo $evaluasi['nama']; ?></h3>
 															</div>
-															<br>
 															<div class="form-group">
+																<input name="idevaluasi" type="hidden" value="<?php echo $evaluasi['idevaluasi']; ?>">
 																<br>
 																<label>Backhand</label>
-																<input onchange="handleChange(this);" type="text" class="form-control numeric" name="backhand" required>
+																<input value="<?php echo $evaluasi['backhand']; ?>" onchange="handleChange(this);" type="text" class="form-control numeric" name="backhand" required>
 															</div>
 															<div class="form-group">
 																<label>Forehand</label>
-																<input onchange="handleChange(this);" type="text" class="form-control numeric" name="forehand" required>
+																<input value="<?php echo $evaluasi['forehand']; ?>" onchange="handleChange(this);" type="text" class="form-control numeric" name="forehand" required>
 															</div>
 															<div class="form-group">
 																<label>Chop</label>
-																<input onchange="handleChange(this);" type="number" class="form-control numeric" name="chop" required>
+																<input value="<?php echo $evaluasi['chop']; ?>" onchange="handleChange(this);" type="number" class="form-control numeric" name="chop" required>
 															</div>
 															<div class="form-group">
 																<label>Blok</label>
-																<input onchange="handleChange(this);" type="number" class="form-control numeric" name="blok" required>
+																<input value="<?php echo $evaluasi['blok']; ?>" onchange="handleChange(this);" type="number" class="form-control numeric" name="blok" required>
 															</div>
 															<div class="form-group">
 																<label>Spin</label>
-																<input onchange="handleChange(this);" type="number" class="form-control numeric" name="spin" required>
+																<input value="<?php echo $evaluasi['spin']; ?>" onchange="handleChange(this);" type="number" class="form-control numeric" name="spin" required>
 															</div>
 															<div class="form-group">
 																<label>Gerakan Kaki</label>
-																<input onchange="handleChange(this);" type="number" class="form-control numeric" name="gerakankaki" required>
+																<input value="<?php echo $evaluasi['gerakankaki']; ?>" onchange="handleChange(this);" type="number" class="form-control numeric" name="gerakankaki" required>
 															</div>
 															<div class="form-group">
 																<label>Fisik</label>
-																<input onchange="handleChange(this);" type="number" class="form-control numeric" name="fisik" required>
+																<input value="<?php echo $evaluasi['fisik']; ?>" onchange="handleChange(this);" type="number" class="form-control numeric" name="fisik" required>
 															</div>
 															<div class="form-group">
-																<button type="submit" class="btn btn-md btn-primary">Simpan Evaluasi</button>
+																<button type="submit" class="btn btn-md btn-primary">Simpan Perubahan</button>
 															</div>
                                                         </div>
                                                     </div>
@@ -131,7 +127,7 @@
         });
 
 
-        $("#form_tambah").submit(function (e) {
+        $("#form_update").submit(function (e) {
             e.preventDefault();
             var form = $(this);
             var btnHtml = form.find("[type='submit']").html();
