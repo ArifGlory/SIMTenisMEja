@@ -101,7 +101,22 @@ class Admin extends CI_Controller
 	}
 
 	function editEvaluasi($idEvaluasi){
-		$data['evaluasi'] = $this->M_Evaluasi->getSingleEvaluasi($idEvaluasi)->result_array()[0];
+		$data['evaluasi'] 	= $this->M_Evaluasi->getSingleEvaluasi($idEvaluasi)->result_array()[0];
+		$detail 			= $this->M_Evaluasi->getSingleDetailEvaluasi($idEvaluasi)->result_array()[0];
+
+		$data['driveforehand'] 	= explode(',',$detail['driveforehand']);
+		$data['drivebackhand'] 	= explode(',',$detail['drivebackhand']);
+		$data['pushforehand'] 	= explode(',',$detail['pushforehand']);
+		$data['pushbackhand'] 	= explode(',',$detail['pushbackhand']);
+		$data['smashforehand'] 	= explode(',',$detail['smashforehand']);
+		$data['smashbackhand'] 	= explode(',',$detail['smashbackhand']);
+		$data['blockforehand'] 	= explode(',',$detail['blockforehand']);
+		$data['blockbackhand'] 	= explode(',',$detail['blockbackhand']);
+		$data['chopforehand'] 	= explode(',',$detail['chopforehand']);
+		$data['chopbackhand'] 	= explode(',',$detail['chopbackhand']);
+		$data['serviceforehand'] 	= explode(',',$detail['serviceforehand']);
+		$data['servicebackhand'] 	= explode(',',$detail['servicebackhand']);
+
 
 		$this->load->view('part_admin/header');
 		$this->load->view('part_admin/sidebar_pelatih');
@@ -114,61 +129,73 @@ class Admin extends CI_Controller
 
 		$drive_forehand = $data['driveforehand_memegangblade']+$data['driveforehand_memukulbola']+$data['driveforehand_penempatanbola']
 			+$data['driveforehand_kecepatan']+$data['driveforehand_timing'];
+		$drive_forehand = $drive_forehand / 5;
 		$detail_drive_forehand = $data['driveforehand_memegangblade'] . "," . $data['driveforehand_memukulbola']. "," . $data['driveforehand_penempatanbola']
 			. "," . $data['driveforehand_kecepatan']. "," . $data['driveforehand_timing'];
 
 		$drive_backhand = $data['drivebackhand_memegangblade']+$data['drivebackhand_memukulbola']+$data['drivebackhand_penempatanbola']
 			+$data['drivebackhand_kecepatan']+$data['drivebackhand_timing'];
+		$drive_backhand = $drive_backhand / 5;
 		$detail_drive_backhand = $data['drivebackhand_memegangblade'] . "," . $data['drivebackhand_memukulbola']. "," . $data['drivebackhand_penempatanbola']
 			. "," . $data['drivebackhand_kecepatan']. "," . $data['drivebackhand_timing'];
 
 		$push_forehand = $data['pushforehand_memegangblade']+$data['pushforehand_memukulbola']+$data['pushforehand_penempatanbola']
 			+$data['pushforehand_kecepatan']+$data['pushforehand_timing'];
+		$push_forehand = $push_forehand / 5;
 		$detail_push_forehand = $data['pushforehand_memegangblade'] . "," . $data['pushforehand_memukulbola']. "," . $data['pushforehand_penempatanbola']
 			. "," . $data['pushforehand_kecepatan']. "," . $data['pushforehand_timing'];
 
 		$push_backhand = $data['pushbackhand_memegangblade']+$data['pushbackhand_memukulbola']+$data['pushbackhand_penempatanbola']
 			+$data['pushbackhand_kecepatan']+$data['pushbackhand_timing'];
+		$push_backhand = $push_backhand / 5;
 		$detail_push_backhand = $data['pushbackhand_memegangblade'] . "," . $data['pushbackhand_memukulbola']. "," . $data['pushbackhand_penempatanbola']
 			. "," . $data['pushbackhand_kecepatan']. "," . $data['pushbackhand_timing'];
 
 		$smash_forehand = $data['smashforehand_memegangblade']+$data['smashforehand_memukulbola']+$data['smashforehand_penempatanbola']
 			+$data['smashforehand_kecepatan']+$data['smashforehand_timing'];
+		$smash_forehand = $smash_forehand / 5;
 		$detail_smash_forehand = $data['smashforehand_memegangblade'] . "," . $data['smashforehand_memukulbola']. "," . $data['smashforehand_penempatanbola']
 			. "," . $data['smashforehand_kecepatan']. "," . $data['smashforehand_timing'];
 
 		$smash_backhand = $data['smashbackhand_memegangblade']+$data['smashbackhand_memukulbola']+$data['smashbackhand_penempatanbola']
 			+$data['smashbackhand_kecepatan']+$data['smashbackhand_timing'];
+		$smash_backhand = $smash_backhand / 5;
 		$detail_smash_backhand = $data['smashbackhand_memegangblade'] . "," . $data['smashbackhand_memukulbola']. "," . $data['smashbackhand_penempatanbola']
 			. "," . $data['smashbackhand_kecepatan']. "," . $data['smashbackhand_timing'];
 
 		$block_forehand = $data['blockforehand_memegangblade']+$data['blockforehand_memukulbola']+$data['blockforehand_penempatanbola']
 			+$data['blockforehand_kecepatan']+$data['blockforehand_timing'];
+		$block_forehand = $block_forehand / 5;
 		$detail_block_forehand = $data['blockforehand_memegangblade'] . "," . $data['blockforehand_memukulbola']. "," . $data['blockforehand_penempatanbola']
 			. "," . $data['blockforehand_kecepatan']. "," . $data['blockforehand_timing'];
 
 		$block_backhand = $data['blockbackhand_memegangblade']+$data['blockbackhand_memukulbola']+$data['blockbackhand_penempatanbola']
 			+$data['blockbackhand_kecepatan']+$data['blockbackhand_timing'];
+		$block_backhand = $block_backhand / 5;
 		$detail_block_backhand = $data['blockbackhand_memegangblade'] . "," . $data['blockbackhand_memukulbola']. "," . $data['blockbackhand_penempatanbola']
 			. "," . $data['blockbackhand_kecepatan']. "," . $data['blockbackhand_timing'];
 
 		$chop_forehand = $data['chopforehand_memegangblade']+$data['chopforehand_memukulbola']+$data['chopforehand_penempatanbola']
 			+$data['chopforehand_kecepatan']+$data['chopforehand_timing'];
+		$chop_forehand = $chop_forehand / 5;
 		$detail_chop_forehand = $data['chopforehand_memegangblade'] . "," . $data['chopforehand_memukulbola']. "," . $data['chopforehand_penempatanbola']
 			. "," . $data['chopforehand_kecepatan']. "," . $data['chopforehand_timing'];
 
 		$chop_backhand = $data['chopbackhand_memegangblade']+$data['chopbackhand_memukulbola']+$data['chopbackhand_penempatanbola']
 			+$data['chopbackhand_kecepatan']+$data['chopbackhand_timing'];
+		$chop_backhand = $chop_backhand / 5;
 		$detail_chop_backhand = $data['chopbackhand_memegangblade'] . "," . $data['chopbackhand_memukulbola']. "," . $data['chopbackhand_penempatanbola']
 			. "," . $data['chopbackhand_kecepatan']. "," . $data['chopbackhand_timing'];
 
 		$service_forehand = $data['serviceforehand_memegangblade']+$data['serviceforehand_memukulbola']+$data['serviceforehand_penempatanbola']
 			+$data['serviceforehand_kecepatan']+$data['serviceforehand_timing'];
+		$service_forehand = $service_forehand / 5;
 		$detail_service_forehand = $data['serviceforehand_memegangblade'] . "," . $data['serviceforehand_memukulbola']. "," . $data['serviceforehand_penempatanbola']
 			. "," . $data['serviceforehand_kecepatan']. "," . $data['serviceforehand_timing'];
 
 		$service_backhand = $data['servicebackhand_memegangblade']+$data['servicebackhand_memukulbola']+$data['servicebackhand_penempatanbola']
 			+$data['servicebackhand_kecepatan']+$data['servicebackhand_timing'];
+		$service_backhand = $service_backhand / 5;
 		$detail_service_backhand = $data['servicebackhand_memegangblade'] . "," . $data['servicebackhand_memukulbola']. "," . $data['servicebackhand_penempatanbola']
 			. "," . $data['servicebackhand_kecepatan']. "," . $data['servicebackhand_timing'];
 
@@ -189,7 +216,7 @@ class Admin extends CI_Controller
 
 
 		$data_evaluasi = array(
-			'idatlet'=>$this->userSession['id'],
+			'idatlet'=>$data['idatlet'],
 			'total_nilai'=>$total,
 			'kategori_nilai'=>$kategori_nilai,
 			'drive_forehand'=>$drive_forehand,
@@ -255,14 +282,86 @@ class Admin extends CI_Controller
 	}
 
 	function updateEvaluasi(){
-		$data = $this->input->post();
 
-		$total = $data['backhand'] + $data['forehand'] + $data['chop'] + $data['blok'] + $data['spin'] + $data['gerakankaki'] + $data['fisik'];
+    	$data = $this->input->post();
+    	$idevaluasi = $data['idevaluasi'];
 
-		if ($total > 700){
-			$total = 700;
-		}
-		$total = $total / 7;
+		$drive_forehand = $data['driveforehand_memegangblade']+$data['driveforehand_memukulbola']+$data['driveforehand_penempatanbola']
+			+$data['driveforehand_kecepatan']+$data['driveforehand_timing'];
+		$drive_forehand = $drive_forehand / 5;
+		$detail_drive_forehand = $data['driveforehand_memegangblade'] . "," . $data['driveforehand_memukulbola']. "," . $data['driveforehand_penempatanbola']
+			. "," . $data['driveforehand_kecepatan']. "," . $data['driveforehand_timing'];
+
+		$drive_backhand = $data['drivebackhand_memegangblade']+$data['drivebackhand_memukulbola']+$data['drivebackhand_penempatanbola']
+			+$data['drivebackhand_kecepatan']+$data['drivebackhand_timing'];
+		$drive_backhand = $drive_backhand / 5;
+		$detail_drive_backhand = $data['drivebackhand_memegangblade'] . "," . $data['drivebackhand_memukulbola']. "," . $data['drivebackhand_penempatanbola']
+			. "," . $data['drivebackhand_kecepatan']. "," . $data['drivebackhand_timing'];
+
+		$push_forehand = $data['pushforehand_memegangblade']+$data['pushforehand_memukulbola']+$data['pushforehand_penempatanbola']
+			+$data['pushforehand_kecepatan']+$data['pushforehand_timing'];
+		$push_forehand = $push_forehand / 5;
+		$detail_push_forehand = $data['pushforehand_memegangblade'] . "," . $data['pushforehand_memukulbola']. "," . $data['pushforehand_penempatanbola']
+			. "," . $data['pushforehand_kecepatan']. "," . $data['pushforehand_timing'];
+
+		$push_backhand = $data['pushbackhand_memegangblade']+$data['pushbackhand_memukulbola']+$data['pushbackhand_penempatanbola']
+			+$data['pushbackhand_kecepatan']+$data['pushbackhand_timing'];
+		$push_backhand = $push_backhand / 5;
+		$detail_push_backhand = $data['pushbackhand_memegangblade'] . "," . $data['pushbackhand_memukulbola']. "," . $data['pushbackhand_penempatanbola']
+			. "," . $data['pushbackhand_kecepatan']. "," . $data['pushbackhand_timing'];
+
+		$smash_forehand = $data['smashforehand_memegangblade']+$data['smashforehand_memukulbola']+$data['smashforehand_penempatanbola']
+			+$data['smashforehand_kecepatan']+$data['smashforehand_timing'];
+		$smash_forehand = $smash_forehand / 5;
+		$detail_smash_forehand = $data['smashforehand_memegangblade'] . "," . $data['smashforehand_memukulbola']. "," . $data['smashforehand_penempatanbola']
+			. "," . $data['smashforehand_kecepatan']. "," . $data['smashforehand_timing'];
+
+		$smash_backhand = $data['smashbackhand_memegangblade']+$data['smashbackhand_memukulbola']+$data['smashbackhand_penempatanbola']
+			+$data['smashbackhand_kecepatan']+$data['smashbackhand_timing'];
+		$smash_backhand = $smash_backhand / 5;
+		$detail_smash_backhand = $data['smashbackhand_memegangblade'] . "," . $data['smashbackhand_memukulbola']. "," . $data['smashbackhand_penempatanbola']
+			. "," . $data['smashbackhand_kecepatan']. "," . $data['smashbackhand_timing'];
+
+		$block_forehand = $data['blockforehand_memegangblade']+$data['blockforehand_memukulbola']+$data['blockforehand_penempatanbola']
+			+$data['blockforehand_kecepatan']+$data['blockforehand_timing'];
+		$block_forehand = $block_forehand / 5;
+		$detail_block_forehand = $data['blockforehand_memegangblade'] . "," . $data['blockforehand_memukulbola']. "," . $data['blockforehand_penempatanbola']
+			. "," . $data['blockforehand_kecepatan']. "," . $data['blockforehand_timing'];
+
+		$block_backhand = $data['blockbackhand_memegangblade']+$data['blockbackhand_memukulbola']+$data['blockbackhand_penempatanbola']
+			+$data['blockbackhand_kecepatan']+$data['blockbackhand_timing'];
+		$block_backhand = $block_backhand / 5;
+		$detail_block_backhand = $data['blockbackhand_memegangblade'] . "," . $data['blockbackhand_memukulbola']. "," . $data['blockbackhand_penempatanbola']
+			. "," . $data['blockbackhand_kecepatan']. "," . $data['blockbackhand_timing'];
+
+		$chop_forehand = $data['chopforehand_memegangblade']+$data['chopforehand_memukulbola']+$data['chopforehand_penempatanbola']
+			+$data['chopforehand_kecepatan']+$data['chopforehand_timing'];
+		$chop_forehand = $chop_forehand / 5;
+		$detail_chop_forehand = $data['chopforehand_memegangblade'] . "," . $data['chopforehand_memukulbola']. "," . $data['chopforehand_penempatanbola']
+			. "," . $data['chopforehand_kecepatan']. "," . $data['chopforehand_timing'];
+
+		$chop_backhand = $data['chopbackhand_memegangblade']+$data['chopbackhand_memukulbola']+$data['chopbackhand_penempatanbola']
+			+$data['chopbackhand_kecepatan']+$data['chopbackhand_timing'];
+		$chop_backhand = $chop_backhand / 5;
+		$detail_chop_backhand = $data['chopbackhand_memegangblade'] . "," . $data['chopbackhand_memukulbola']. "," . $data['chopbackhand_penempatanbola']
+			. "," . $data['chopbackhand_kecepatan']. "," . $data['chopbackhand_timing'];
+
+		$service_forehand = $data['serviceforehand_memegangblade']+$data['serviceforehand_memukulbola']+$data['serviceforehand_penempatanbola']
+			+$data['serviceforehand_kecepatan']+$data['serviceforehand_timing'];
+		$service_forehand = $service_forehand / 5;
+		$detail_service_forehand = $data['serviceforehand_memegangblade'] . "," . $data['serviceforehand_memukulbola']. "," . $data['serviceforehand_penempatanbola']
+			. "," . $data['serviceforehand_kecepatan']. "," . $data['serviceforehand_timing'];
+
+		$service_backhand = $data['servicebackhand_memegangblade']+$data['servicebackhand_memukulbola']+$data['servicebackhand_penempatanbola']
+			+$data['servicebackhand_kecepatan']+$data['servicebackhand_timing'];
+		$service_backhand = $service_backhand / 5;
+		$detail_service_backhand = $data['servicebackhand_memegangblade'] . "," . $data['servicebackhand_memukulbola']. "," . $data['servicebackhand_penempatanbola']
+			. "," . $data['servicebackhand_kecepatan']. "," . $data['servicebackhand_timing'];
+
+		$total = 	$drive_forehand + $drive_backhand + $push_forehand + $push_backhand + $smash_forehand +
+			$smash_backhand + $block_forehand + $block_backhand + $chop_forehand + $chop_backhand +
+			$service_forehand + $service_backhand;
+		$total = $total / 12;
 
 		if ($total < 70){
 			$kategori_nilai = "Kurang";
@@ -273,10 +372,45 @@ class Admin extends CI_Controller
 		}else if ($total >= 90){
 			$kategori_nilai = "Sangat Baik";
 		}
-		$data['total_nilai'] = $total;
-		$data['kategori_nilai'] = $kategori_nilai;
 
-		$this->M_Evaluasi->ubahEvaluasi($data);
+
+		$data_evaluasi = array(
+			'total_nilai'=>$total,
+			'kategori_nilai'=>$kategori_nilai,
+			'drive_forehand'=>$drive_forehand,
+			'drive_backhand'=>$drive_backhand,
+			'push_forehand'=>$push_forehand,
+			'push_backhand'=>$push_backhand,
+			'smash_forehand'=>$smash_forehand,
+			'smash_backhand'=>$smash_backhand,
+			'block_forehand'=>$block_forehand,
+			'block_backhand'=>$block_backhand,
+			'chop_forehand'=>$chop_forehand,
+			'chop_backhand'=>$chop_backhand,
+			'service_forehand'=>$service_forehand,
+			'service_backhand'=>$service_backhand
+		);
+
+		$this->db->where('idevaluasi',$idevaluasi);
+		$this->db->update('evaluasi',$data_evaluasi);
+
+		$data_detail_evaluasi = array(
+			'driveforehand'=>$detail_drive_forehand,
+			'drivebackhand'=>$detail_drive_backhand,
+			'pushforehand'=>$detail_push_forehand,
+			'pushbackhand'=>$detail_push_backhand,
+			'smashforehand'=>$detail_smash_forehand,
+			'smashbackhand'=>$detail_smash_backhand,
+			'blockforehand'=>$detail_block_forehand,
+			'blockbackhand'=>$detail_block_backhand,
+			'chopforehand'=>$detail_chop_forehand,
+			'chopbackhand'=>$detail_chop_backhand,
+			'serviceforehand'=>$detail_service_forehand,
+			'servicebackhand'=>$detail_service_backhand,
+		);
+
+
+		$this->M_Evaluasi->ubahEvaluasi($data_detail_evaluasi,$idevaluasi);
 	}
 
 	function hapusEvaluasi(){

@@ -32,6 +32,14 @@ class M_Evaluasi extends CI_Model
 		return $data;
 	}
 
+	function getSingleDetailEvaluasi($idEvaluasi){
+		$this->db->select('*');
+		$this->db->from('detail_evaluasi');
+		$this->db->where('idevaluasi',$idEvaluasi);
+		$data = $this->db->get();
+		return $data;
+	}
+
 	function getRankByEvaluasi(){
 		$query = $this->db->query("SELECT `idatlet`,SUM(`total_nilai`) AS `totalnya`,`user`.`nama`
 		FROM `evaluasi` 
@@ -82,14 +90,12 @@ class M_Evaluasi extends CI_Model
 
 	}
 
-	function ubahEvaluasi($data){
+	function ubahEvaluasi($data,$idevaluasi){
 		$redirect       =  base_url()."Admin/evaluasi";
-		$idevaluasi 	= $data['idevaluasi'];
-		unset($data['idevaluasi']);
 
 		$this->db->where('idevaluasi',$idevaluasi);
 
-		$update = $this->db->update('evaluasi',$data);
+		$update = $this->db->update('detail_evaluasi',$data);
 		if($update){
 			$response['status']     = "success";
 			$response['message']    = "Ubah Evaluasi berhasil";
