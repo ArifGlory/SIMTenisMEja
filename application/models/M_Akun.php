@@ -190,6 +190,12 @@ class M_Akun extends CI_Model
 		return $data;
 	}
 
+	function getAtletByJenis($jenis){
+    	$this->db->where('jenis',$jenis);
+		$data = $this->db->get("user");
+		return $data;
+	}
+
     function updateFoto($idPelangan,$foto){
         $target_dir = "foto/pelanggan/";
         $imgType    = substr($foto['type'],strpos( $foto['type'],"/") + 1);

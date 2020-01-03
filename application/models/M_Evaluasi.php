@@ -61,6 +61,27 @@ class M_Evaluasi extends CI_Model
 		}
 	}
 
+	function simpanDetailEvaluasi($data){
+		$redirect       =  base_url()."Admin/evaluasi";
+
+		$insert = $this->db->insert('detail_evaluasi',$data);
+		if($insert){
+			$response['status']     = "success";
+			$response['message']    = "Simpan Evaluasi berhasil";
+			$response['redirect']   = $redirect;
+
+			$response = json_encode($response);
+			echo $response;
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Gagal menyimpan, coba lagi nanti";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+
+	}
+
 	function ubahEvaluasi($data){
 		$redirect       =  base_url()."Admin/evaluasi";
 		$idevaluasi 	= $data['idevaluasi'];
