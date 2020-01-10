@@ -71,7 +71,7 @@
 											<label class="j-icon-right" for="email">
 												<i class="icofont icofont-user-alt-2"></i>
 											</label>
-											<select name="jenis">
+											<select id="jenis" name="jenis">
 												<option value="pemula">Pemula (Dibawah 13 tahun)</option>
 												<option value="kadet">Kadet (Dibawah 15 tahun)</option>
 												<option value="senior">Senior (16 Tahun Keatas)</option>
@@ -154,6 +154,14 @@
     $(document).ready(function () {
         console.log("ready");
 
+        var nama = $("#nama").val();
+        var nik = $("#nik").val();
+        var jenis = $("#jenis").val();
+        var phone = $("#phone").val();
+        var tanggal_lahir = $("#tanggal_lahir").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+
         $("#j-pro").submit(function (e) {
             e.preventDefault();
             var form = $(this);
@@ -161,7 +169,16 @@
             var url = form.attr("action");
             var data = new FormData(this);
 
-            $.ajax({
+            if ($("#nama").val().length == 0 || $("#nik").val().length == 0 || $("#jenis").val().length == 0
+                || $("#phone").val().length == 0 || $("#tanggal_lahir").val().length == 0
+                || $("#username").val().length == 0 || $("#password").val().length == 0)
+			{
+
+            console.log("nama = "+$("#nama").val());
+
+        		swal("Oops..", "Semua data harus diiisi !", "error");
+			}else{
+            	$.ajax({
 
                 beforeSend: function () {
                     form.find("[type='submit']").addClass("disabled").html("Loading ... ");
@@ -189,6 +206,9 @@
                 }
 
             });
+    		}
+
+
 
 
 
