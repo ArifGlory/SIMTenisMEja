@@ -39,6 +39,21 @@
 									</div>
 								</div>
 								<div class="card-block">
+									<div class="row">
+										<div class="col-md-8">
+											<form id="form_tanggal" action="<?php echo base_url(); ?>Admin/rankByTanggal2"
+												  method="post" enctype="multipart/form-data">
+												<div class="form-group">
+													<label>Pilih Tanggal</label>
+													<input name="tanggal" class="form-control" type="date">
+												</div>
+												<div class="form-group">
+													<button class="btn btn-sm btn-primary" type="submit">Pilih</button>
+												</div>
+											</form>
+										</div>
+									</div>
+									<br><br>
 									<div class="table-responsive">
 										<div class="row">
 											<div class="col-xs-12 col-sm-12">

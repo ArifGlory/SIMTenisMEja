@@ -33,7 +33,7 @@ class Admin extends CI_Controller
     	$data['jml_atlet'] = $this->M_Akun->getAllAtlet()->num_rows();
     	$data['jml_evaluasi'] = $this->M_Evaluasi->getAllEvaluasi()->num_rows();
 		//$data['rank'] = $this->M_Evaluasi->getRankByEvaluasi()->result();
-		$tanggal = "2020-01-05";
+		$tanggal = date('Y-m-d');
 		$data['rank'] = $this->M_Evaluasi->getRankByTanggalEvaluasi($tanggal)->result();
 
 
@@ -52,6 +52,49 @@ class Admin extends CI_Controller
         $this->load->view('pelatih/dashboard',$data);
         $this->load->view('part_admin/footer');
     }
+
+    function rankByTanggal(){
+    	$tanggal = $this->input->post('tanggal');
+
+		$data['jml_atlet'] = $this->M_Akun->getAllAtlet()->num_rows();
+		$data['jml_evaluasi'] = $this->M_Evaluasi->getAllEvaluasi()->num_rows();
+		$data['rank'] = $this->M_Evaluasi->getRankByTanggalEvaluasi($tanggal)->result();
+
+		foreach ($data['rank'] as $val){
+			if ($val->totalnya == null){
+				$val->totalnya = 0;
+			}
+
+			if ($val->idatlet == null){
+				$val->idatlet = 0;
+			}
+		}
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar_pelatih');
+		$this->load->view('pelatih/dashboard',$data);
+		$this->load->view('part_admin/footer');
+	}
+
+	function rankByTanggal2(){
+		$tanggal = $this->input->post('tanggal');
+		$data['rank'] = $this->M_Evaluasi->getRankByTanggalEvaluasi($tanggal)->result();
+
+		foreach ($data['rank'] as $val){
+			if ($val->totalnya == null){
+				$val->totalnya = 0;
+			}
+
+			if ($val->idatlet == null){
+				$val->idatlet = 0;
+			}
+		}
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar_pelatih');
+		$this->load->view('atlet/data_ranking',$data);
+		$this->load->view('part_admin/footer');
+	}
 
     function atlet(){
 
