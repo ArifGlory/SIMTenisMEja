@@ -88,16 +88,21 @@
 							<li class="user-profile header-notification">
 								<div class="dropdown-primary dropdown">
 									<div class="dropdown-toggle" data-toggle="dropdown">
-										<img src="<?php echo base_url();  ?>asset/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+										<?php if($this->session->userdata()['level'] == "atlet"){ ?>
+											<img src="<?php echo base_url();  ?>asset/assets/images/user_icon.png" class="img-radius" alt="User-Profile-Image">
+										<?php }else{ ?>
+											<img src="<?php echo base_url();  ?>asset/assets/images/admin_icon.png" class="img-radius" alt="User-Profile-Image">
+										<?php } ?>
+
 										<span><?php echo $this->session->userdata()['nama'] ?></span>
 										<i class="feather icon-chevron-down"></i>
 									</div>
 									<ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-										<!--<li>
-											<a href="sample-page.html#!">
+										<li>
+											<a href="<?php echo base_url(); ?>Auth/setting">
 													<i class="feather icon-settings"></i> Settings
                                             </a>
-										</li>-->
+										</li>
 										<li>
 											<a href="<?php echo base_url(); ?>Auth/logout">
 													<i class="feather icon-log-out"></i> Logout

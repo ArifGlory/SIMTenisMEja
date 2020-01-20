@@ -8,13 +8,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Auth extends CI_Controller
 {
-
+	var $userSession;
     function __construct()
     {
         parent::__construct();
         $this->load->helper(array('url'));
         $this->load->library(array('form_validation','encrypt','pagination','session'));
         $this->load->model('M_Akun');
+		$this->userSession = $this->session->userdata();
     }
 
     function index(){
@@ -46,7 +47,32 @@ class Auth extends CI_Controller
 		$this->M_Akun->saveUser($data);
 	}
 
+	function setting(){
+    	$level = $this->userSession['level'];
+    	if($level == "atlet"){
+			$data['profil'] = $this->M_Akun->getSingleUser($this->userSession['id'])->result_array()[0];
+		}else{
+			$data['profil'] = $this->M_Akun->getSingleAdmin($this->userSession['id'])->result_array()[0];
+		}
 
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar');
+		$this->load->view('user/change_password',$data);
+		$this->load->view('part_admin/footer');
+
+	}
+
+	function changePassword(){
+		$data = $_POST;
+		$level = $this->userSession['level'];
+		if($level == "atlet"){
+			$this->M_Akun->updatePasswordUser($data);
+		}else{
+			$this->M_Akun->updatePasswordAdmin($data);
+		}
+
+	}
 
     function logout(){
         session_destroy();

@@ -155,35 +155,97 @@ class M_Akun extends CI_Model
 		}
 	}
 
-    function updatePassword($id_pelanggan,$password){
-        $data_update = array(
-          'password'=>$password
-        );
-        $redirect       =  base_url()."User/dashboard/";
+    function updatePasswordUser($data){
+    	$user = $this->getSingleUser($data['iduser'])->result();
+		$redirect       =  base_url()."Dashboard/";
 
-        $this->db->where('id_pelanggan',$id_pelanggan);
-        $query =  $this->db->update("tb_pelanggan",$data_update);
-        if($query){
-            $response['status']     = "success";
-            $response['message']    = "Data berhasil di update";
-            $response['redirect']   = $redirect;
+    	foreach ($user as $val){
+    		$old_pass =  $this->encrypt->decode($val->password);
+		}
 
-            $response = json_encode($response);
-            echo $response;
-        }else{
-            $response['status']     = "error";
-            $response['message']    = "Gagal menyimpan, coba lagi nanti";
+    	if ($data['passwordlama'] == $old_pass){
+    		$data_update = array(
+    			'password'=>$this->encrypt->encode($data['passwordbaru'])
+			);
 
-            $response = json_encode($response);
-            echo $response;
-        }
-    }
+    		$this->db->where('iduser',$data['iduser']);
+    		$update =  $this->db->update('user',$data_update);
+
+    		if ($update){
+				$response['status']     = "success";
+				$response['message']    = "Data berhasil di ubah";
+				$response['redirect']   = $redirect;
+
+				$response = json_encode($response);
+				echo $response;
+			}else{
+				$response['status']     = "error";
+				$response['message']    = "Gagal menyimpan perubahan, coba lagi nanti";
+
+				$response = json_encode($response);
+				echo $response;
+			}
+
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Password lama salah";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+	}
+
+	function updatePasswordAdmin($data){
+		$dataAdmin = $this->getSingleAdmin($data['idadmin'])->result();
+		$redirect       =  base_url()."Admin/";
+
+		foreach ($dataAdmin as $val){
+			$old_pass =  $this->encrypt->decode($val->password);
+		}
+
+		if ($data['passwordlama'] == $old_pass){
+			$data_update = array(
+				'password'=>$this->encrypt->encode($data['passwordbaru'])
+			);
+
+			$this->db->where('idadmin',$data['idadmin']);
+			$update =  $this->db->update('admin',$data_update);
+
+			if ($update){
+				$response['status']     = "success";
+				$response['message']    = "Data berhasil di ubah";
+				$response['redirect']   = $redirect;
+
+				$response = json_encode($response);
+				echo $response;
+			}else{
+				$response['status']     = "error";
+				$response['message']    = "Gagal menyimpan perubahan, coba lagi nanti";
+
+				$response = json_encode($response);
+				echo $response;
+			}
+
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Password lama salah";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+	}
 
     function getSingleUser($iduser){
         $this->db->where('iduser',$iduser);
         $data = $this->db->get("user");
         return $data;
     }
+
+	function getSingleAdmin($id){
+		$this->db->where('idadmin',$id);
+		$data = $this->db->get("admin");
+		return $data;
+	}
 
     function getAllAtlet(){
 		$data = $this->db->get("user");
