@@ -32,7 +32,9 @@ class Admin extends CI_Controller
 
     	$data['jml_atlet'] = $this->M_Akun->getAllAtlet()->num_rows();
     	$data['jml_evaluasi'] = $this->M_Evaluasi->getAllEvaluasi()->num_rows();
-		$data['rank'] = $this->M_Evaluasi->getRankByEvaluasi()->result();
+		//$data['rank'] = $this->M_Evaluasi->getRankByEvaluasi()->result();
+		$tanggal = "2020-01-05";
+		$data['rank'] = $this->M_Evaluasi->getRankByTanggalEvaluasi($tanggal)->result();
 
 
 		foreach ($data['rank'] as $val){

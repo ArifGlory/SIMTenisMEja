@@ -49,6 +49,16 @@ class M_Evaluasi extends CI_Model
 		return $query;
 	}
 
+	function getRankByTanggalEvaluasi($tanggal){
+		$query = $this->db->query("SELECT `idatlet`,SUM(`total_nilai`) AS `totalnya`,`user`.`nama`
+		FROM `evaluasi` 
+		RIGHT OUTER JOIN `user` ON `evaluasi`.`idatlet` = `user`.`iduser`
+		WHERE DATE(`evaluasi`.`tanggal`) = '$tanggal'
+		GROUP BY `idatlet` ORDER BY `totalnya` DESC");
+
+		return $query;
+	}
+
 	function simpanEvaluasi($data){
 		$redirect       =  base_url()."Admin/evaluasi";
 
