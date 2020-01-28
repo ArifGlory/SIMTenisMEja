@@ -469,5 +469,39 @@ class Admin extends CI_Controller
 		echo json_encode($atlet);
 	}
 
+	function tambahPelatih(){
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar_pelatih');
+		$this->load->view('pelatih/tambah_pelatih');
+		$this->load->view('part_admin/footer');
+	}
+
+	function listPelatih(){
+    	$data['pelatih'] = $this->M_Akun->getAllPelatih()->result();
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar_pelatih');
+		$this->load->view('pelatih/data_pelatih',$data);
+		$this->load->view('part_admin/footer');
+	}
+
+	function savePelatih(){
+		$data = $_POST;
+
+		$this->M_Akun->simpanPelatih($data);
+	}
+
+	function hapusPelatih(){
+    	$idadmin = $this->input->post('idadmin');
+
+    	$this->M_Akun->deletePelatih($idadmin);
+	}
+
+	function hapusAtlet(){
+		$idatlet = $this->input->post('idatlet');
+
+		$this->M_Akun->deleteAtlet($idatlet);
+	}
+
 
 }

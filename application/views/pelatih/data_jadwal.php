@@ -36,7 +36,7 @@
 
 									<div class="card-header-right">
 										<?php
-											if ($level != "atlet"){ ?>
+											if ($level == "pelatih"){ ?>
 												<a href="<?php echo base_url()?>Jadwal/addJadwal" style="color: white;" class="btn btn-sm btn-primary">Tambah Jadwal</a>
 											<?php }
 										?>
@@ -52,7 +52,7 @@
 															<th>Hari</th>
 															<th>Waktu</th>
 															<?php
-															if ($level != "atlet"){ ?>
+															if ($level == "pelatih"){ ?>
 															<th>Aksi</th>
 															<?php }
 															?>
@@ -69,7 +69,7 @@
 																<?php echo "Pukul ". $val->waktu; ?>
 															</td>
 															<?php
-															if ($level != "atlet"){ ?>
+															if ($level == "pelatih"){ ?>
 																<td>
 
 																	<button data-id_jadwal="<?php echo $val->idjadwal; ?>"

@@ -50,7 +50,7 @@ class M_Akun extends CI_Model
     function deleteUser($idUser){
 		$redirect       =  base_url()."Admin/atlet";
 
-    	$this->db->where('iduser',$idUser);
+    	$this->db->where('idatlet',$idUser);
     	$query = $this->db->delete('user');
 
 		if($query){
@@ -83,7 +83,7 @@ class M_Akun extends CI_Model
             if ($decoded_pass == $password){
 				$user = array(
 					'nama'      => $user['nama'],
-					'id'        => $user['iduser'],
+					'id'        => $user['idatlet'],
 					'level'     => "atlet"
 				);
 
@@ -156,7 +156,7 @@ class M_Akun extends CI_Model
 	}
 
     function updatePasswordUser($data){
-    	$user = $this->getSingleUser($data['iduser'])->result();
+    	$user = $this->getSingleUser($data['idatlet'])->result();
 		$redirect       =  base_url()."Dashboard/";
 
     	foreach ($user as $val){
@@ -168,7 +168,7 @@ class M_Akun extends CI_Model
     			'password'=>$this->encrypt->encode($data['passwordbaru'])
 			);
 
-    		$this->db->where('iduser',$data['iduser']);
+    		$this->db->where('idatlet',$data['idatlet']);
     		$update =  $this->db->update('user',$data_update);
 
     		if ($update){
@@ -235,8 +235,74 @@ class M_Akun extends CI_Model
 		}
 	}
 
-    function getSingleUser($iduser){
-        $this->db->where('iduser',$iduser);
+	function updateProfilUser($data,$profil){
+    	$username = $data['username'];
+		$redirect       =  base_url()."Dashboard/profil";
+
+    	$this->db->where('username',$username);
+    	$cek = $this->db->get('user')->num_rows();
+
+    	if ($cek > 0){
+    		if ($data['username'] == $profil['username']){
+				$idatlet = $data['idatlet'];
+				unset($data['idatlet']);
+
+				$this->db->where('idatlet',$idatlet);
+				$update = $this->db->update('user',$data);
+
+				if ($update){
+					$response['status']     = "success";
+					$response['message']    = "Data berhasil di ubah";
+					$response['redirect']   = $redirect;
+
+					$response = json_encode($response);
+					echo $response;
+				}else{
+					$response['status']     = "error";
+					$response['message']    = "Gagal menyimpan perubahan, coba lagi nanti";
+
+					$response = json_encode($response);
+					echo $response;
+				}
+			}else{
+				$response['status']     = "error";
+				$response['message']    = "Username telah digunakan";
+
+				$response = json_encode($response);
+				echo $response;
+			}
+
+		}else{
+    		$idatlet = $data['idatlet'];
+    		unset($data['idatlet']);
+
+    		$this->db->where('idatlet',$idatlet);
+    		$update = $this->db->update('user',$data);
+
+			if ($update){
+				$response['status']     = "success";
+				$response['message']    = "Data berhasil di ubah";
+				$response['redirect']   = $redirect;
+
+				$response = json_encode($response);
+				echo $response;
+			}else{
+				$response['status']     = "error";
+				$response['message']    = "Gagal menyimpan perubahan, coba lagi nanti";
+
+				$response = json_encode($response);
+				echo $response;
+			}
+
+
+		}
+
+
+
+	}
+
+    function getSingleUser($idatlet){
+        $this->db->where('idatlet',$idatlet);
         $data = $this->db->get("user");
         return $data;
     }
@@ -249,6 +315,12 @@ class M_Akun extends CI_Model
 
     function getAllAtlet(){
 		$data = $this->db->get("user");
+		return $data;
+	}
+
+	function getAllPelatih(){
+    	$this->db->where('level','pelatih');
+		$data = $this->db->get("admin");
 		return $data;
 	}
 
@@ -297,4 +369,86 @@ class M_Akun extends CI_Model
             echo $response;
         }
     }
+
+
+    function simpanPelatih($data){
+    	$username = $data['username'];
+		$redirect       =  base_url()."Admin/listPelatih";
+
+		$this->db->where('username',$username);
+		$cek = $this->db->get('admin')->num_rows();
+
+		if ($cek > 0){
+			$response['status']     = "error";
+			$response['message']    = "Username telah digunakan";
+
+			$response = json_encode($response);
+			echo $response;
+		}else{
+			$encoded_password = $this->encrypt->encode($data['password']);
+			$data['password'] = $encoded_password;
+			$data['level'] = "pelatih";
+
+			$query =  $this->db->insert('admin',$data);
+
+			if($query){
+				$response['status']     = "success";
+				$response['message']    = "Data berhasil disimpan";
+				$response['redirect']   = $redirect;
+
+				$response = json_encode($response);
+				echo $response;
+			}else{
+				$response['status']     = "error";
+				$response['message']    = "Gagal menyimpan, coba lagi nanti";
+
+				$response = json_encode($response);
+				echo $response;
+			}
+		}
+	}
+
+	function deletePelatih($idadmin){
+		$redirect       =  base_url()."Admin/listPelatih";
+
+		$this->db->where('idadmin',$idadmin);
+		$query = $this->db->delete('admin');
+
+		if($query){
+			$response['status']     = "success";
+			$response['message']    = "Hapus data berhasil";
+			$response['redirect']   = $redirect;
+
+			$response = json_encode($response);
+			echo $response;
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Gagal menghapus, coba lagi nanti";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+	}
+
+	function deleteAtlet($idatlet){
+		$redirect       =  base_url()."Admin/atlet";
+
+		$this->db->where('idatlet',$idatlet);
+		$query = $this->db->delete('user');
+
+		if($query){
+			$response['status']     = "success";
+			$response['message']    = "Hapus data berhasil";
+			$response['redirect']   = $redirect;
+
+			$response = json_encode($response);
+			echo $response;
+		}else{
+			$response['status']     = "error";
+			$response['message']    = "Gagal menghapus, coba lagi nanti";
+
+			$response = json_encode($response);
+			echo $response;
+		}
+	}
 }

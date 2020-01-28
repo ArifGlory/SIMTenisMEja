@@ -6,7 +6,7 @@ class M_Evaluasi extends CI_Model
 	function getAllEvaluasi(){
 		$this->db->select('*');
 		$this->db->from('evaluasi');
-		$this->db->join('user', 'evaluasi.idatlet = user.iduser');
+		$this->db->join('user', 'evaluasi.idatlet = user.idatlet');
 		$this->db->order_by('tanggal',"ASC");
 		$data = $this->db->get();
 		return $data;
@@ -15,8 +15,8 @@ class M_Evaluasi extends CI_Model
 	function getMyEvaluasi($idAtlet,$limit){
 		$this->db->select('*');
 		$this->db->from('evaluasi');
-		$this->db->join('user', 'evaluasi.idatlet = user.iduser');
-		$this->db->where('idatlet',$idAtlet);
+		$this->db->join('user', 'evaluasi.idatlet = user.idatlet');
+		$this->db->where('evaluasi.idatlet',$idAtlet);
 		$this->db->order_by('tanggal',"ASC");
 		$this->db->limit($limit);
 		$data = $this->db->get();
@@ -26,7 +26,7 @@ class M_Evaluasi extends CI_Model
 	function getSingleEvaluasi($idEvaluasi){
 		$this->db->select('*');
 		$this->db->from('evaluasi');
-		$this->db->join('user', 'evaluasi.idatlet = user.iduser');
+		$this->db->join('user', 'evaluasi.idatlet = user.idatlet');
 		$this->db->where('idevaluasi',$idEvaluasi);
 		$data = $this->db->get();
 		return $data;
@@ -41,20 +41,20 @@ class M_Evaluasi extends CI_Model
 	}
 
 	function getRankByEvaluasi(){
-		$query = $this->db->query("SELECT `idatlet`,SUM(`total_nilai`) AS `totalnya`,`user`.`nama`
+		$query = $this->db->query("SELECT `evaluasi`.`idatlet`,SUM(`total_nilai`) AS `totalnya`,`user`.`nama`
 		FROM `evaluasi` 
-		RIGHT OUTER JOIN `user` ON `evaluasi`.`idatlet` = `user`.`iduser`
-		GROUP BY `idatlet` ORDER BY `totalnya` DESC");
+		RIGHT OUTER JOIN `user` ON `evaluasi`.`idatlet` = `user`.`idatlet`
+		GROUP BY `evaluasi`.`idatlet` ORDER BY `totalnya` DESC");
 
 		return $query;
 	}
 
 	function getRankByTanggalEvaluasi($tanggal){
-		$query = $this->db->query("SELECT `idatlet`,SUM(`total_nilai`) AS `totalnya`,`user`.`nama`
+		$query = $this->db->query("SELECT `evaluasi`.`idatlet`,SUM(`total_nilai`) AS `totalnya`,`user`.`nama`
 		FROM `evaluasi` 
-		RIGHT OUTER JOIN `user` ON `evaluasi`.`idatlet` = `user`.`iduser`
+		RIGHT OUTER JOIN `user` ON `evaluasi`.`idatlet` = `user`.`idatlet`
 		WHERE DATE(`evaluasi`.`tanggal`) = '$tanggal'
-		GROUP BY `idatlet` ORDER BY `totalnya` DESC");
+		GROUP BY `evaluasi`.`idatlet` ORDER BY `totalnya` DESC");
 
 		return $query;
 	}

@@ -60,7 +60,7 @@
 											<label class="j-icon-right" for="email">
 												<i class="icofont icofont-user-alt-2"></i>
 											</label>
-											<select id="jenis" name="jenis">
+											<select id="jenis" name="kategori">
 												<option value="pemula">Pemula (Dibawah 13 tahun)</option>
 												<option value="kadet">Kadet (Dibawah 15 tahun)</option>
 												<option value="senior">Senior (16 Tahun Keatas)</option>

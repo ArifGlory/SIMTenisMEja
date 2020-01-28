@@ -31,7 +31,16 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<h5>Data Atlet</h5>
+									<div class="row">
+										<div class="col-md-6">
+											<h5>Data Atlet</h5>
+										</div>
+										<div class="col-md-6">
+											<div class="text-right">
+												<a class="btn btn-sm btn-primary" href="<?php echo base_url();?>Auth/editProfiluser">Edit Profil</a>
+											</div>
+										</div>
+									</div>
 
 								</div>
 								<div class="card-block">
@@ -54,7 +63,7 @@
 																<h5> <?php echo $profil['nama'];?></h5>
 															</div>
 															<div class="form-group">
-																<label>Nama</label>
+																<label>NIK</label>
 																<h5> <?php echo $profil['nik'];?></h5>
 															</div>
 															<div class="form-group">
@@ -63,7 +72,7 @@
 															</div>
 															<div class="form-group">
 																<label>Jenis Atlet</label>
-																<h5> <?php echo $profil['jenis'];?></h5>
+																<h5> <?php echo $profil['kategori'];?></h5>
 															</div>
 															<div class="form-group">
 																<label>Jenis Kelamin</label>

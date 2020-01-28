@@ -46,7 +46,7 @@
 														<tr role="row">
 															<th>Nama</th>
 															<th>NIK</th>
-															<th>Jenis Atlet</th>
+															<th>Kategori Atlet</th>
 															<th>Jenis Kelamin</th>
 															<th>Aksi</th>
 														</tr>
@@ -62,7 +62,7 @@
 																<?php echo $val->nik; ?>
 															</td>
 															<td>
-																<?php echo $val->jenis; ?>
+																<?php echo $val->kategori; ?>
 															</td>
 															<td>
 																<?php
@@ -76,25 +76,28 @@
 																	$tanggal_lahir = date( 'F j, Y', strtotime($val->tanggal_lahir));
 																?>
 															</td>
-															<td>
-																<button data-id_user="<?php echo $val->iduser; ?>"
-																		data-nama="<?php echo $val->nama; ?>"
-																		data-username="<?php echo $val->username; ?>"
-																		data-nik="<?php echo $val->nik; ?>"
-																		data-jenis="<?php echo $val->jenis; ?>"
-																		data-jenis_kelamin="<?php echo $jeniskelamin; ?>"
-																		data-tanggal_lahir="<?php echo $tanggal_lahir; ?>"
-																		data-phone="<?php echo $val->phone; ?>"
-																		class="btn btn-round btn-sm btn-primary"
-																		id="detailAtlet"
-																		title="Detail Atlet"
-																		data-toggle="modal" data-target="#modalDetail"><i class="icofont icofont-eye"></i></button>
-                                                                <button data-id_user="<?php echo $val->iduser; ?>"
-                                                                        class="btn btn-round btn-sm btn-danger"
-                                                                        id="hapusAtlet"
-                                                                        title="Hapus Atlet"
-                                                                        data-toggle="modal" data-target="#modalDelete"><i class="icofont icofont-ui-delete"></i></button>
-															</td>
+															<?php if ($this->session->userdata()['level'] == "pelatih") { ?>
+																<td>
+																	<button data-id_user="<?php echo $val->idatlet; ?>"
+																			data-nama="<?php echo $val->nama; ?>"
+																			data-username="<?php echo $val->username; ?>"
+																			data-nik="<?php echo $val->nik; ?>"
+																			data-jenis="<?php echo $val->kategori; ?>"
+																			data-jenis_kelamin="<?php echo $jeniskelamin; ?>"
+																			data-tanggal_lahir="<?php echo $tanggal_lahir; ?>"
+																			data-phone="<?php echo $val->phone; ?>"
+																			class="btn btn-round btn-sm btn-primary"
+																			id="detailAtlet"
+																			title="Detail Atlet"
+																			data-toggle="modal" data-target="#modalDetail"><i class="icofont icofont-eye"></i></button>
+																	<button data-id_user="<?php echo $val->idatlet; ?>"
+																			class="btn btn-round btn-sm btn-danger"
+																			id="hapusAtlet"
+																			title="Hapus Atlet"
+																			data-toggle="modal" data-target="#modalDelete"><i class="icofont icofont-ui-delete"></i></button>
+																</td>
+															<?php } ?>
+
 														</tr>
 														<?php }?>
 													</tbody>
@@ -124,7 +127,7 @@
                                         <div class="row">
                                             <div class="col-md-12 text-center">
                                                 <h4>Anda yakin menghapus atlet ini ?</h4>
-                                                <input  type="hidden" name="iduser" class="form-control iduser">
+                                                <input  type="hidden" name="idatlet" class="form-control idatlet">
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +167,7 @@
 													<h5 id="nik"></h5>
 												</div>
 												<div class="form-group">
-													<label>Jenis Atlet</label>
+													<label>Kategori Atlet</label>
 													<h5 id="jenis"></h5>
 												</div>
 												<div class="form-group">
@@ -211,7 +214,7 @@
 
 
         $("#table_user	").on("click", "#hapusAtlet", function(event) {
-            $(".iduser").val($(this).attr('data-id_user'));
+            $(".idatlet").val($(this).attr('data-id_user'));
         });
         $("#table_user	").on("click", "#detailAtlet", function(event) {
             $("#username").text($(this).attr('data-username'));

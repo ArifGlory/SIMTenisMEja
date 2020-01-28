@@ -1,3 +1,4 @@
+<?php $level =  $this->session->userdata()['level'] ?>
 <div class="pcoded-content">
 	<!-- [ breadcrumb ] start -->
 	<div class="page-header">
@@ -5,7 +6,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-8">
 					<div class="page-header-title">
-						<h4 class="m-b-10">Evaluasi</h4>
+						<h4 class="m-b-10">Pelatih</h4>
 					</div>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -14,7 +15,7 @@
 							</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a href="#">Data Evaluasi</a>
+							<a href="#">Data Pelatih</a>
 						</li>
 					</ul>
 				</div>
@@ -31,13 +32,15 @@
 						<div class="col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<h5>Data Semua Evaluasi</h5>
-									<?php if ($this->session->userdata()['level'] == "pelatih") { ?>
-										<div class="card-header-right">
-											<a href="<?php echo base_url()?>Admin/addEvaluasi" style="color: white;" class="btn btn-sm btn-primary">Tambah Evaluasi</a>
-										</div>
-									<?php } ?>
+									<h5>Data Semua Pelatih</h5>
 
+									<div class="card-header-right">
+										<?php
+											if ($level == "admin"){ ?>
+												<a href="<?php echo base_url()?>Admin/tambahPelatih" style="color: white;" class="btn btn-sm btn-primary">Tambah Pelatih</a>
+											<?php }
+										?>
+									</div>
 								</div>
 								<div class="card-block">
 									<div class="table-responsive">
@@ -46,42 +49,38 @@
 												<table id="table_user" class="table table-hover">
 													<thead>
 														<tr role="row">
-															<th>Nama Atlet</th>
-															<th>Tanggal Evaluasi</th>
-															<th>Total Nilai</th>
-															<th>Kategori Nilai</th>
+															<th>Username</th>
+															<th>Nama</th>
+															<?php
+															if ($level == "admin"){ ?>
 															<th>Aksi</th>
+															<?php }
+															?>
 														</tr>
 													</thead>
 													<tbody>
-														<?php foreach($evaluasi as $val){
+														<?php foreach($pelatih as $val){
                                                            ?>
 														<tr>
 															<td>
-                                                                <?php echo $val->nama; ?>
+                                                                <?php echo $val->username; ?>
 															</td>
 															<td>
-																<?php echo date( 'F j, Y', strtotime($val->tanggal)); ?>
+																<?php echo $val->nama; ?>
 															</td>
-															<td>
-																<?php echo $val->total_nilai; ?>
-															</td>
-															<td>
-																<?php echo $val->kategori_nilai; ?>
-															</td>
-															<?php if ($this->session->userdata()['level'] == "pelatih") { ?>
+															<?php
+															if ($level == "admin"){ ?>
 																<td>
-																	<a href="<?php echo base_url()?>Admin/editEvaluasi/<?php echo $val->idevaluasi; ?>" class="btn btn-round btn-sm btn-primary"
-																	   title="Edit Evaluasi"><i class="icofont icofont-pencil"></i></a>
 
-																	<button data-id_evaluasi="<?php echo $val->idevaluasi; ?>"
+																	<button data-idadmin="<?php echo $val->idadmin; ?>"
 																			class="btn btn-round btn-sm btn-danger"
-																			id="hapusEvaluasi"
-																			title="Hapus Evaluasi"
+																			id="hapusPelatih"
+																			title="Hapus Pelatih"
 																			data-toggle="modal" data-target="#modalDelete"><i class="icofont icofont-ui-delete"></i></button>
-																</td>
-															<?php } ?>
 
+																</td>
+															<?php }
+															?>
 														</tr>
 														<?php }?>
 													</tbody>
@@ -99,10 +98,10 @@
                     <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
-                                <form id="form_delete" action="<?php echo base_url(); ?>Admin/hapusEvaluasi"
+                                <form id="form_delete" action="<?php echo base_url(); ?>Admin/hapusPelatih"
                                       method="post" enctype="multipart/form-data">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Hapus Atlet</h4>
+                                        <h4 class="modal-title">Hapus Pelatih</h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
@@ -110,8 +109,8 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <h4>Anda yakin menghapus atlet ini ?</h4>
-                                                <input  type="hidden" name="idevaluasi" class="form-control idevaluasi">
+                                                <h4>Anda yakin menghapus pelatih ini ?</h4>
+                                                <input  type="hidden" name="idadmin" class="form-control idadmin">
                                             </div>
                                         </div>
                                     </div>
@@ -147,8 +146,8 @@
         var kode_produk;
 
 
-        $("#table_user").on("click", "#hapusEvaluasi", function(event) {
-            $(".idevaluasi").val($(this).attr('data-id_evaluasi'));
+        $("#table_user").on("click", "#hapusPelatih", function(event) {
+            $(".idadmin").val($(this).attr('data-idadmin'));
         });
 
 

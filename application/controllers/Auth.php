@@ -55,12 +55,27 @@ class Auth extends CI_Controller
 			$data['profil'] = $this->M_Akun->getSingleAdmin($this->userSession['id'])->result_array()[0];
 		}
 
-
 		$this->load->view('part_admin/header');
 		$this->load->view('part_admin/sidebar');
 		$this->load->view('user/change_password',$data);
 		$this->load->view('part_admin/footer');
 
+	}
+
+	function editProfiluser(){
+		$data['profil'] = $this->M_Akun->getSingleUser($this->userSession['id'])->result_array()[0];
+
+		$this->load->view('part_admin/header');
+		$this->load->view('part_admin/sidebar');
+		$this->load->view('atlet/change_profil_atlet',$data);
+		$this->load->view('part_admin/footer');
+	}
+
+	function updateProfilUser(){
+		$data = $_POST;
+		$profil = $this->M_Akun->getSingleUser($this->userSession['id'])->result_array()[0];
+
+		$this->M_Akun->updateProfilUser($data,$profil);
 	}
 
 	function changePassword(){

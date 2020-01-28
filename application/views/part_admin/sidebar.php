@@ -46,7 +46,7 @@ $level = $session['level'];
 											<span class="pcoded-micon">
 												<i class="feather icon-bar-chart"></i>
 											</span>
-										<span class="pcoded-mtext">Data Jadwal</span>
+										<span class="pcoded-mtext">Jadwal latihan</span>
 									</a>
 								</li>
 								<li class="">

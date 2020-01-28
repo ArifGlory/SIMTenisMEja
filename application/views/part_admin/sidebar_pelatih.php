@@ -57,6 +57,16 @@ $level = $session['level'];
 										<span class="pcoded-mtext">Data Ranking</span>
 									</a>
 								</li>
+								<?php if ($level == "admin"){ ?>
+									<li class="">
+										<a href="<?php echo base_url(); ?>Admin/listPelatih" class="waves-effect waves-dark">
+											<span class="pcoded-micon">
+												<i class="icofont icofont-user-suited"></i>
+											</span>
+											<span class="pcoded-mtext">Data Pelatih</span>
+										</a>
+									</li>
+								<?php } ?>
 							</ul>
 						</div>
 					</nav>
