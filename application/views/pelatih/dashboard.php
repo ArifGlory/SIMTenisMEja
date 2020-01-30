@@ -5,7 +5,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-8">
 					<div class="page-header-title">
-						<h4 class="m-b-10">Dashboard Pelatih SIM TTC</h4>
+						<h4 class="m-b-10">Dashboard</h4>
 					</div>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item">
@@ -14,7 +14,7 @@
 							</a>
 						</li>
 						<li class="breadcrumb-item">
-							<a href="<?php echo base_url(); ?>Admin">Dashboard Pelatih</a>
+							<a href="<?php echo base_url(); ?>Admin">Dashboard</a>
 						</li>
 					</ul>
 				</div>

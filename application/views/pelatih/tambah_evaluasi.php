@@ -66,7 +66,7 @@
 																<label>Nama Atlet</label>
 																<select style="width: 100%;" id="selectAtlet" class="form-control" name="idatlet">
 																	<?php foreach ($atlet as $val)  {?>
-																		<option value="<?php echo $val->iduser ?>"><?php echo $val->nama ?></option>
+																		<option value="<?php echo $val->idatlet ?>"><?php echo $val->nama ?></option>
 																	<?php } ?>
 																</select>
 															</div>
@@ -433,7 +433,7 @@
                     var html = '';
                     var i;
                     for(i=0; i<data.length; i++){
-                        html += '<option value="'+data[i].iduser+'">'+data[i].nama+'</option>';
+                        html += '<option value="'+data[i].idatlet+'">'+data[i].nama+'</option>';
                     }
                     $('#selectAtlet').html(html);
                     $('#selectAtlet').select2();
