@@ -38,7 +38,7 @@
 																  method="post" enctype="multipart/form-data">
 															<?php if ($this->session->userdata('level') == "atlet"){ ?>
 																<div class="form-group">
-																	<input class="form-control" type="hidden" name="iduser" value="<?php echo $profil['iduser']; ?>">
+																	<input class="form-control" type="hidden" name="idatlet" value="<?php echo $profil['idatlet']; ?>">
 																</div>
 															<?php }else{ ?>
 																<div class="form-group">
