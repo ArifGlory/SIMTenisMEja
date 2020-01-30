@@ -22,7 +22,7 @@ class Auth extends CI_Controller
         $this->load->view('atlet/login_admin');
     }
 
-    function loginPelatih(){
+    function sistem(){
 		$this->load->view('pelatih/login');
 	}
 

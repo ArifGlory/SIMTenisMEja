@@ -118,7 +118,7 @@
 							<div class="card-block">
 								<div class="row m-b-20">
 									<div align="center" class="col-md-12">
-										<h2 class="text-center">Pelatih SIM TTC</h2>
+										<h2 class="text-center">SIM TTC</h2>
 										<h5>Silakan Login untuk melanjutkan</h5>
 									</div>
 								</div>
